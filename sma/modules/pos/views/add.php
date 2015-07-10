@@ -46,7 +46,7 @@
             #content { padding-top: 10px; }
         </style>
     </head>
-    <body   id="allwrapper">
+    <body>
         <div id="wrapper">
             <div class="navbar navbar-fixed-top">
                 <div class="navbar-inner" style="padding-left:10px;">
@@ -89,19 +89,23 @@
                     </div>
                 </div>
             </div>
+               <div class="container-fluid">
             <div id="content">
-                <div class="c1">
-                    <div>PUTO</div>
-                    <div class="pos">
+                <div class="row-fluid">                     
+                 
+                    <div class="pos span12">
+                  
                                     <?php if ($message) {
                                         echo "<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" . $message . "</div>";
                                     } ?>
 <?php if ($success_message) {
     echo "<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" . $success_message . "</div>";
 } ?>
+
                         <div id="pos"> <?php echo form_open("module=pos"); ?>
 						<input type="hidden" name="id_caja_turno" id='id_caja_turno' class="id_caja_turno" value="<?=$id_caja_turno?>"/>
-                            <div id="leftdiv">
+                           <div id="leftdiv" class="span5">                             <input type="hidden" name="id_caja_turno" id='id_caja_turno' class="id_caja_turno" value="<?=$id_caja_turno?>"/>
+                                <div class="header">Mis ARticulos</div>
                                 <div id="printhead">
                                     <h4 style="text-transform:uppercase;"><?php echo SITE_NAME; ?></h4>
 <?php echo "<h5 style=\"text-transform:uppercase;\">" . $this->lang->line('order_list') . "</h5>";
@@ -115,7 +119,7 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                     <a href="#" id="showCustomerModal" role="button" data-toggle="modal" style="float: right;width:22px;height:22px; margin-top:-1px; border: 0;"><img src="assets/pos/images/plus-icon.png" alt="+"></a>
 
                                     <div style="clear:left;"></div>
-                                    <input id="scancode" name="code" class="scancode" style="width:370px; border: 1px solid #00ACED; color: #00ACED;" placeholder="<?php echo $this->lang->line('barcode_scanner'); ?>" autocomplete="off">
+                                    <input id="scancode" name="code" class="scancode span4" placeholder="<?php echo $this->lang->line('barcode_scanner'); ?>" autocomplete="off">
                                     <div style="clear:both;"></div>
                                 </div>
 
@@ -142,7 +146,7 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                         </div>
                                     </div>
                                     <div style="clear:both;"></div>
-                                    <table id="totalTable" style="width:100%; float:right; border: 1px solid #666; padding:5px; font-size: 14px; color:#000; background: #FFF;">
+                                    <table id="totalTable" style="width:100%; float:right;  border:none ; padding:5px; font-size: 1.2em; color:#000;">
                                         <tr>
                                             <td style="padding-left:10px; text-align:left; font-weight:normal;"><?php echo $this->lang->line('total_items'); ?></td>
                                             <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="count">0</span></td>
@@ -172,12 +176,12 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                             </tr>
 <?php } ?>
                                         <tr>
-                                            <td style="padding-left:10px; text-align:left; " colspan="2"><?php echo $this->lang->line('discount'); ?></td>
+                                            <td style="padding: 5px 0px 5px 10px; text-align:left;  font-weight:bold; color:#000;"><?php echo $this->lang->line('discount'); ?></td>
                                             <td style="text-align:right; padding-right:10px; font-weight:bold;" colspan="2"><span id="ds">0.00</span></td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 5px 0px 5px 10px; text-align:left; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2"><?php echo $this->lang->line('total_payable'); ?></td>
-                                            <td style="text-align:right; padding:5px 10px 5px 0px; font-size: 14px;border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2"><span id="total-payable">0.00</span></td>
+                                            <td style="padding: 5px 0px 5px 10px; text-align:left;  font-weight:bold; color:#000;" colspan="2"><?php echo $this->lang->line('total_payable'); ?></td>
+                                            <td style="text-align:right; padding:5px 10px 5px 0px; font-size: 1.3em; font-weight:bold; color:#000; colspan="2"><span id="total-payable">0.00</span></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -205,7 +209,7 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                 <input type="submit" id="submit" value="Submit Sale" style="display: none;" />
                             </div>
 <?php echo form_close(); ?>
-                            <div id="cp">
+                            <div id="cp" class="span6">
                                <div id="cpinner">
                                     <div id="catContainer">
                                         <div class="list_carousel">
@@ -2389,5 +2393,6 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 		
 <?php } ?>
         </script>
+    </div>
     </body>
 </html>
