@@ -1,6 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 html, body, form { margin:0; padding:0; width:100%; height:100%; }
+html { 
+  background: url("images/1429483_71119570.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 body { min-width:970px; }
 .ui-keyboard {
 	padding: .3em;
@@ -123,20 +130,16 @@ body { min-width:970px; }
 	padding: 3px;
 
 }
-#content { padding-top: 60px; }
+#content { padding-top: 60px;background: transparent; }
 .pos { margin: 0 auto; }
 #pos {
 	position:relative;
 }
 #pos a {
 	padding: 3px;
-	border-width: 1px;
-	border-style: solid;
 	color: #000;
 	text-decoration:none;
-	-moz-border-radius:2px;
-	-webkit-border-radius:2px;
-	border-radius:2px;
+	
 }
 #pos .del_row {
 	background: #F5F5F5 !important;
@@ -155,24 +158,24 @@ body { min-width:970px; }
 	display: inline-block;
 }
 #pos #leftdiv {
-	min-width: 380px;
-	max-width:380px;
-	padding:10px 10px 5px 10px;
-	background: #F5f5F5;
-	border-radius: 5px;
-	float:left;
-	margin: 0 0 0 10px;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 7px 0 rgba(0, 0, 0, 0.3) inset;
+	padding:0;
+	background: #fff;
+	border: 1px solid rgb(239, 239, 239);
+	
+}
+/*header test*/
+
+.header{
+	background: rgb(221, 255, 220);
+padding: 8px;
+margin: 0;
+text-align: right;
+text-transform: uppercase;
+color: black;
 }
 #pos input, #pos select { border: 1px solid #333; }
 
-#pos #cp {
-	width: auto;
-	margin: 0px 10px 0px 420px;
-}
-#pos #cp #cpinner {
-	width: 100%;
-}
+
 #pos #cp #pdiv {
 	float:left;
 	display:block;
@@ -244,8 +247,6 @@ body { min-width:970px; }
 
 #pos .gray {
 	background-color:#333;
-	border:1px solid #333;
-	border-radius: 5px;
 	display:inline-block;
 	color:#ffffff;
 	padding: 4px;
@@ -268,9 +269,8 @@ body { min-width:970px; }
 #pos .red {
 	background-color:#CE483D;
 	border:1px solid #CE483D;
-	border-radius: 5px;
 	display:inline-block;
-	color:#000;
+	color:#ecf0f1;
 	padding: 4px;
 	margin: 5px 3px 3px 0;
 	height: 40px;
@@ -292,7 +292,6 @@ body { min-width:970px; }
 #pos .yellow {
 	background-color:#FFA93C;
 	border:1px solid #FFA93C;
-	border-radius: 5px;
 	display:inline-block;
 	color:#000;
 	padding: 4px;
@@ -314,16 +313,15 @@ body { min-width:970px; }
 }
 
 #pos .cyan {
-	background-color:#00ACED;
-	border:1px solid #00ACED;
-	border-radius: 5px;
+	padding:10px 20px 10px 20px;
+  	background-color:#2980b9;
+  	text-decoration:none;
+  	color:#ecf0f1;
+  	box-shadow:0px 1px 2px rgba(0, 0, 0, 0.3);
 	display:inline-block;
-	color:#000;
-	padding: 4px;
 	margin: 5px 3px 3px 0;
 	height: 40px;
 	text-transform:uppercase;
-	text-decoration:none;
 	cursor:pointer;
 	font-size:14px;
 }
@@ -340,7 +338,6 @@ body { min-width:970px; }
 #pos .pg {
 	background-color:#4FA950;
 	border:1px solid #4FA950;
-	border-radius: 5px;
 	display:inline-block;
 	color:#000;
 	padding: 4px;
@@ -387,14 +384,16 @@ body { min-width:970px; }
 #pos .keyboard:focus, #pos input { box-shadow: none; } 
 
 #pos input {
-	display: block;
-	width: 240px;
-	padding: 4px;
-	color:#666;
-	font-weight:bold;
-	border: 1px solid #333;
-	margin-bottom: 5px;
-}
+display: block;
+width: 240px;
+padding: 4px;
+text-align: center;
+text-transform: uppercase;
+color: #050505;
+font-weight: bold;
+border: none;
+background: rgb(232, 231, 231);
+margin-bottom: 5px;}
 #pos a.cubutton {
 	display: block;
 	width: 75px;
@@ -408,7 +407,7 @@ body { min-width:970px; }
 	float: right;
 }
 #pos #prodiv {
-	height: 367px;
+	height: auto;
 }
 #pos #printhead, #pos #printfooter {
 	display: none;
@@ -422,21 +421,21 @@ body { min-width:970px; }
 }
 /*#pos .miantable, #pos .miantable thead, #pos .miantable tr { width: 100% !important;}*/
 #protbldiv {
-	height: 330px;
-	position: relative;
-	overflow: scroll;
-	overflow-x:hidden;
-	border: 1px solid #333;
+
+	min-height: 450px;
+
 }
 #pos .protable {
 	border: 0;
 	width: 100%; /* height: 295px; margin-bottom:10px; overflow:auto; */
 }
 #pos .protable td {
-	border-bottom: 1px solid #DDD;
+	border: 2px solid #DDD;
 	margin: 0;
+	border-left: none;
+	border-right: none;
 }
-#pos .protable input, #pos .protable select { font-size:13px !important; }
+#pos .protable input, #pos .protable select { font-size:1.2em !important; }
 #pos #num {
 	width: 250px;
 }
@@ -461,13 +460,13 @@ body { min-width:970px; }
 	padding: 0;
 	font-weight:normal;
 	width: 35px;
-	background: #F5F5F5;
-	background-color: #F5F5F5;
 	border: 0;
 }
 #pos .price {
 	width: 67px;
 	text-align: right;
+	background: none;
+	font-weight: bold;
 }
 #pos .tax {
 	width: 67px;
@@ -477,8 +476,9 @@ body { min-width:970px; }
 }
 #pos #saletbl td { padding:5px 1px; } 
 #pos .code {
-	width: 120px;
+	width: auto;
 	text-align: left;
+	font-size: 1.3em;
 }
 #pos .ui-keyboard-button {
 	width: 3em;
@@ -687,19 +687,17 @@ label {
 }
 
 #pos .code {
-	background: #00ACED;
-    border-radius: 5px;
+	
     color: #000;
     display: block;
     padding: 5px;
-	width: 170px;
 	height: 20px;
 	overflow: hidden;
 	cursor: pointer;
 }
 
 #pos .code:hover {
-    color: #FFF;
+    color: red;
 }
 .alert { position: absolute; top:10px; right:10px; width:350px; z-index: 500022; }
 .alert, .alert p { margin-bottom:0; }
