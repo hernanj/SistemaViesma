@@ -1714,9 +1714,9 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 											$('#gmail_loading').hide();
 											return false; 
 										}else{
-											//$('#gmail_loading').hide();
-											//enviar_pago();
-											//return false;
+											$('#gmail_loading').hide();
+											enviar_pago();
+											return false;
 										}
 									 
                                      var prod_tax = 0;
