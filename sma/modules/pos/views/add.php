@@ -41,7 +41,7 @@
         <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/pos/js/jquery.carouFredSel-6.2.1.js"></script>
         <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/pos/js/bootbox.min.js"></script>        <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/js/jquery.mask.js"></script>
         <style type="text/css">
-            .navbar-fixed-top { position:Relative; }
+            .navbar-fixed-top { position:static; }
             #content { padding-top: 10px; }
         </style>
     </head>
