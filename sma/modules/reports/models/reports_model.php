@@ -249,9 +249,12 @@ class Reports_model extends CI_Model
 		SELECT 
 				s.id
 				,s.total
-			FROM sales s
+				,vt.hora
+			FROM 
+				sales s
+				,ventas_x_turno vt
 			WHERE 
-				1=1
+				s.id=vt.id_sales
 				$fecha
 		";
 		$q = $this->db->query($myQuery, false);
@@ -307,8 +310,9 @@ class Reports_model extends CI_Model
 				date as fecha
                 ,s.id
 				,COUNT(*) as cantidad
-				,SUM(s.total) as total			
-			FROM sales s
+				,SUM(s.total) as total				
+			FROM 
+				sales s				
 			WHERE 
 				1=1
 				$fecha

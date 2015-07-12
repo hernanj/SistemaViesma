@@ -410,13 +410,14 @@ class Reports extends MX_Controller {
 						<thead>
 							<tr>
 								<td><b>Numero de venta</b></td>
-								<td><b>Monto</b></td>
 								<td><b>hora</b></td>
+								<td><b>Monto</b></td>
 								<td><b>Total acumulado</b></td>
 							</tr>
 						</thead>";
 			//indice para para registros de detalle
-			$i=0;		
+			$i=0;	
+				print_r($ventas);
 			foreach($ventas as $venta){
 				$acumlado=$acumlado+$venta->total;
 				$cant_ventas++;			
