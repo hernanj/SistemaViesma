@@ -45,6 +45,9 @@ h3 { margin: 5px 0; }
 	<span class=\"right\">".$this->lang->line("date").": ".date(PHP_DATE, strtotime($inv->date))."</span>"; 
 	 ?>
     <div style="clear:both;"></div>
+	<span class="left">Hora: </span>
+	<span class="right"><?php echo date("H:m:s")?></span>
+	<div style="clear:both;"></div>
     
 	<table class="table" cellspacing="0"  border="0"> 
 	<thead> 

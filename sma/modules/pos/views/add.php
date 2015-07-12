@@ -74,14 +74,16 @@
                                 </ul>
                             </li>
                             <li><a class="btn btn-success hbtn" href="#" id="todaySale"><?php echo $this->lang->line('today_sale'); ?></a></li>
+                            <li><a class="btn btn-success hbtn"  id="cierreTurno" >Cierre de turno</a></li>
+                            <li><a class="btn btn-success hbtn"  id="egresosTurno">Gastos</a></li>
                             <?php
-                            if (ALERT_NO > 0) {
+                            /*if (ALERT_NO > 0) {
 								
                                 echo "<li class=\"visible-desktop\"><a class=\"btn btn-warning hbtn\" href=\"index.php?module=reports&view=products\">" . ALERT_NO . " " . $this->lang->line('product_alerts') . "</a></li>";
                             }
                             if (DEMO) {
                                 echo '<li><a class="btn btn-success hbtn" href="http://codecanyon.net/item/pos-module-for-stock-manager-advance/4494018?ref=tecdiary" target="_blank">Buy Now</a></li>';
-                            }
+                            }*/
                             ?>
                             <li class="divider-vertical"></li>
                         </ul>
@@ -810,7 +812,16 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 					  if (e.keyCode == teclaCtrl)
 						ctrlPressed = false;
 					});
-											
+					
+					
+					$('#cierreTurno').click(function(){
+						$('#cierreModal').modal();
+						get_rendicion_turno();
+					});
+					
+					$('#egresosTurno').click(function(){
+						$('#egresosModal').modal();						
+					});				
 				var count_productos=0;
                 var count = 1;
                 var total = 0;
@@ -1717,9 +1728,9 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 											$('#gmail_loading').hide();
 											return false; 
 										}else{
-											//$('#gmail_loading').hide();
-											//enviar_pago();
-											//return false;
+											$('#gmail_loading').hide();
+											enviar_pago();
+											return false;
 										}
 									 
                                      var prod_tax = 0;
