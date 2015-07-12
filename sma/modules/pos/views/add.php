@@ -74,7 +74,8 @@
                                 </ul>
                             </li>
                             <li><a class="btn btn-success hbtn" href="#" id="todaySale"><?php echo $this->lang->line('today_sale'); ?></a></li>
-                            <li><a class="btn btn-success hbtn"  id="cierreTurno" >Rendiciòn de turno</a></li>
+                            <li><a class="btn btn-success hbtn"  id="cierreTurno" >Cierre de turno</a></li>
+                            <li><a class="btn btn-success hbtn"  id="egresosTurno">Gastos</a></li>
                             <?php
                             /*if (ALERT_NO > 0) {
 								
@@ -816,6 +817,10 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 					$('#cierreTurno').click(function(){
 						$('#cierreModal').modal();
 						get_rendicion_turno();
+					});
+					
+					$('#egresosTurno').click(function(){
+						$('#egresosModal').modal();						
 					});				
 				var count_productos=0;
                 var count = 1;
