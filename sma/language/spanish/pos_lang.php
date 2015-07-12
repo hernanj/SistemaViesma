@@ -82,3 +82,4 @@ $lang['cf_title1'] 						= "Campo personalizado 1 Titulo";
 $lang['cf_value1'] 						= "Campo personalizado 1 Valor";
 $lang['cf_title2'] 						= "Campo personalizado 2 Titulo";
 $lang['cf_value2'] 						= "Campo personalizado 2 Valor";
+$lang['back_to_pos'] 						= "Volver al POS";

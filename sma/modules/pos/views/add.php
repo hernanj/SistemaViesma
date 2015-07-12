@@ -75,7 +75,7 @@
                                 </ul>
                             </li>
                             <li><a class="btn btn-success hbtn" href="#" id="todaySale"><?php echo $this->lang->line('today_sale'); ?></a></li>
-                            <li><a class="btn btn-success hbtn"  id="cierreTurno" >Cierre de turno</a></li>
+                            <li><a class="btn btn-success hbtn"  id="cierreTurno" >Rendiciòn de turno</a></li>
                             <?php
                             /*if (ALERT_NO > 0) {
 								
