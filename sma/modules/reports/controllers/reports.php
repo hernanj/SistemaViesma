@@ -417,7 +417,7 @@ class Reports extends MX_Controller {
 						</thead>";
 			//indice para para registros de detalle
 			$i=0;	
-				print_r($ventas);
+				
 			foreach($ventas as $venta){
 				$acumlado=$acumlado+$venta->total;
 				$cant_ventas++;			
