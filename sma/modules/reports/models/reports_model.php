@@ -250,11 +250,14 @@ class Reports_model extends CI_Model
 				s.id
 				,s.total
 				,vt.hora
+                ,(ct.turno +1) as  turno
 			FROM 
 				sales s
 				,ventas_x_turno vt
+                ,caja_turnos ct
 			WHERE 
 				s.id=vt.id_sales
+                AND vt.id_caja_turno = ct.id_caja_turno
 				$fecha
 		";
 		$q = $this->db->query($myQuery, false);
@@ -318,6 +321,7 @@ class Reports_model extends CI_Model
 				$fecha
 		GROUP BY date ORDER BY date
 		";
+		
 		$q = $this->db->query($myQuery, false);
 		if($q->num_rows() > 0) {
 			foreach (($q->result()) as $row) {

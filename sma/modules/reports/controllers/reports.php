@@ -411,29 +411,34 @@ class Reports extends MX_Controller {
 							<tr>
 								<td><b>Numero de venta</b></td>
 								<td><b>hora</b></td>
+								<td><b>Turno</b></td>
 								<td><b>Monto</b></td>
 								<td><b>Total acumulado</b></td>
 							</tr>
 						</thead>";
 			//indice para para registros de detalle
 			$i=0;	
-				
-			foreach($ventas as $venta){
-				$acumlado=$acumlado+$venta->total;
-				$cant_ventas++;			
-				$aux_salida.="
-					<tr>
-						<td>$cant_ventas</td>
-						<td>".$venta->hora."</td>
-						<td><i>$ ".number_format($venta->total, 2, ',', '.')."</i></td>
-						<td>$ ".number_format($acumlado, 2, ',', '.')."</td>
-					</tr>";
-					//lleno los campos para 
-					
-					$details_sales[$i]['sale_id']=$venta->id;
-					$details_sales[$i]['total']=$venta->total;
-					$details_sales[$i]['number_sale']=$cant_ventas;
-					$i++;
+			//verificar si hay ventas
+
+			if(!empty($ventas)&& count ($ventas)){
+				foreach($ventas as $venta){
+					$acumlado=$acumlado+$venta->total;
+					$cant_ventas++;			
+					$aux_salida.="
+						<tr>
+							<td>$cant_ventas</td>
+							<td>".$venta->hora."</td>
+							<td>".$venta->turno."</td>
+							<td><i>$ ".number_format($venta->total, 2, ',', '.')."</i></td>
+							<td>$ ".number_format($acumlado, 2, ',', '.')."</td>
+						</tr>";
+						//lleno los campos para 
+						
+						$details_sales[$i]['sale_id']=$venta->id;
+						$details_sales[$i]['total']=$venta->total;
+						$details_sales[$i]['number_sale']=$cant_ventas;
+						$i++;
+				}
 			}
 			$aux_salida.="</table></td>";
 			//totales de productos
@@ -449,28 +454,32 @@ class Reports extends MX_Controller {
 								</tr>
 							</thead>";	
 //indice para para registros de detalle
-			$i=0;							
-			foreach($productos as $producto){
-				$aux_salida.="
-					<tr>
-						<td>".$producto->nombre."</td>
-						<td>".number_format($producto->cantidad, 3, ',', '.')." Kg</td>
-						<td>$ ".number_format($producto->total, 2, ',', '.')."</td>
-					</tr>";	
-					$products_totals[$i]['product_id']=$producto->id;
-					$products_totals[$i]['cant_product']=$producto->cantidad;
-					$products_totals[$i]['total']=$producto->total;
-					$total_productos=$total_productos+$producto->total;
-					$i++;
+			$i=0;	
+			if(!empty($productos)&& count ($productos)){			
+				foreach($productos as $producto){
+					$aux_salida.="
+						<tr>
+							<td>".$producto->nombre."</td>
+							<td>".number_format($producto->cantidad, 3, ',', '.')." Kg</td>
+							<td>$ ".number_format($producto->total, 2, ',', '.')."</td>
+						</tr>";	
+						$products_totals[$i]['product_id']=$producto->id;
+						$products_totals[$i]['cant_product']=$producto->cantidad;
+						$products_totals[$i]['total']=$producto->total;
+						$total_productos=$total_productos+$producto->total;
+						$i++;
+				}
 			}
 			// cierre de tabla de productos
 			$aux_salida.="</table>";
-			$aux_salida.="<hr/><table width='100%'>
-								<tr>
-									<td align='left'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total</b></td>
-									<td align='right'><b>$ ".number_format($total_productos, 2, ',', '.')."</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-								</tr>";
-			$aux_salida.="</table></td>";
+			if(!empty($productos)&& count ($productos)){	
+				$aux_salida.="<hr/><table width='100%'>
+									<tr>
+										<td align='left'><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total</b></td>
+										<td align='right'><b>$ ".number_format($total_productos, 2, ',', '.')."</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									</tr>";
+				$aux_salida.="</table></td>";
+			}
 			// totales ventas
 			$aux_salida.="
 				<td valign='top'>
@@ -481,11 +490,16 @@ class Reports extends MX_Controller {
 									<td><b>Total de ventas</b></td>
 									<td><b>Monto total</b></td>						
 								</tr>
-							</thead>
+							</thead>";
+							if($total_productos>0){
+								$aux_salida.="
 								<tr>
 									<td>$cant_ventas</td>
 									<td>$ ".number_format($acumlado, 2, ',', '.')."</td>
-								</tr>
+								</tr>";
+							}
+							
+								$aux_salida.="
 						</table>
 				</td>";
 				//indice para para registros de detalle

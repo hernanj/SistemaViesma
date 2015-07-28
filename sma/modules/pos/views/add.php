@@ -133,6 +133,7 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                                         <th style="width: 30px; color:#FFF;padding:5px 0; font-weight:normal;"><i class="icon-trash icon-white"></i></th>
                                                         <th style="width: 200px; color:#FFF;padding:5px 0; font-weight:normal;"><?php echo $this->lang->line('product'); ?></th>
                                                         <th style="width: 42px; color:#FFF;padding:5px 0; font-weight:normal;"><?php echo $this->lang->line('qty'); ?></th>
+                                                        <th style="width: 82px; color:#FFF; padding:5px 0; font-weight:normal;"><?php echo $this->lang->line('price_unit'); ?></th>
                                                         <th style="width: 82px; color:#FFF; padding:5px 0; font-weight:normal;"><?php echo $this->lang->line('price'); ?></th>
                                                     </tr>
                                                 </thead>
@@ -147,12 +148,12 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                         </div>
                                     </div>
                                     <div style="clear:both;"></div>
-                                    <table id="totalTable" style="width:100%; float:right;  border:none ; padding:5px; font-size: 1.2em; color:#000;">
+                                    <table id="totalTable" style="width:99%; float:right;  border:none ; padding:5px; font-size: 1.2em; color:#000;">
                                         <tr>
                                             <td style="padding-left:10px; text-align:left; font-weight:normal;"><?php echo $this->lang->line('total_items'); ?></td>
                                             <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="count">0</span></td>
                                             <td style="padding-left:10px; text-align:left;"><?php echo $this->lang->line('total_x_tax'); ?></td>
-                                            <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="total">0.00</span></td>
+                                            <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;">$&nbsp;<span id="total">0.00</span></td>
                                         </tr>
 <?php if (TAX1 || TAX2) { ?>
                                             <tr>
@@ -182,7 +183,7 @@ echo $this->lang->line("date") . " " . date(PHP_DATE, strtotime('today'));
                                         </tr>
                                         <tr>
                                             <td style="padding: 5px 0px 5px 10px; text-align:left;  font-weight:bold; color:#000;" colspan="2"><?php echo $this->lang->line('total_payable'); ?></td>
-                                            <td style="text-align:right; padding:5px 10px 5px 0px; font-size: 1.3em; font-weight:bold; color:#000; colspan="2"><span id="total-payable">0.00</span></td>
+                                            <td style="text-align:right; padding:5px 10px 5px 0px; font-size: 1.3em; font-weight:bold; color:#000; colspan="2">$&nbsp;<span id="total-payable">0.00</span></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -300,8 +301,25 @@ echo "</div><button id=\"previous\" type=\"button\" class=\"blue\" style='z-inde
             </div>
             <div class="modal-body">
                 <div id="paymentdiv"></div>
-                <div class="well form-horizontal" style="margin-bottom:0;"><div class="control-group" style="font-weight:bold;">
-                        <div class="control-group">
+                <div class="well form-horizontal" style="margin-bottom:0;">
+					<div class="pcash">
+							<div class="control-group">
+								<label class="control-label" for="paid-amount"><?php echo $this->lang->line("paid"); ?></label>
+								<div class="controls"><input type="text" id="paid-amount" class="pa"/></div>
+							</div>
+							<div class="control-group" style="font-weight:bold;">
+								<div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("change"); ?>:</div>
+								<div class="controls">
+									<span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;" id="balance"></span>
+								</div>
+							</div>
+						</div>
+				
+					<div class="control-group" style="font-weight:bold;">
+                        
+						
+						
+						<div class="control-group">
                             <label class="control-label" id="warehouse_l"><?php echo $this->lang->line("warehouse"); ?></label>
                             <div class="controls">  <?php
                                 $wh[''] = $this->lang->line("select") . ' ' . $this->lang->line("warehouse");
@@ -322,7 +340,30 @@ echo "</div><button id=\"previous\" type=\"button\" class=\"blue\" style='z-inde
                                 echo form_dropdown('s_biller', $bl, (isset($_POST['s_biller']) ? $_POST['s_biller'] : DBILLER), 'id="s_biller" data-placeholder="' . $this->lang->line("select") . ' ' . $this->lang->line("biller") . '" required="required" data-error="' . $this->lang->line("biller") . ' ' . $this->lang->line("is_required") . '"');
                                 ?> </div>
                         </div>
-                        <div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("total_payable"); ?>:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="twt"></span></span></div></div> <div class="control-group" style="font-weight:bold;"><div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("total_items"); ?>:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="item_count"></span></span></div></div> <div class="control-group"><label class="control-label" for="paid_by"><?php echo $this->lang->line("paid_by"); ?></label><div class="controls"><select name="paid_by" id="paid_by"><option value="cash"><?php echo $this->lang->line("cash"); ?></option><option value="CC"><?php echo $this->lang->line("cc"); ?></option><option value="Cheque"><?php echo $this->lang->line("cheque"); ?></option></select></div></div> <div class="pcash"><div class="control-group"><label class="control-label" for="paid-amount"><?php echo $this->lang->line("paid"); ?></label><div class="controls"><input type="text" id="paid-amount" class="pa"/></div></div> <div class="control-group" style="font-weight:bold;"><div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("change"); ?>:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;" id="balance"></span></div></div></div>
+                        <div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("total_payable"); ?>:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="twt"></span></span></div>
+					</div> 
+						
+						<div class="control-group" style="font-weight:bold;">
+							<div class="control-label" style="padding-top:0;font-weight:bold;"><?php echo $this->lang->line("total_items"); ?>:</div>
+							<div class="controls">
+								<span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;">
+								<span id="item_count"></span>
+								</span>
+							</div>
+						</div> 
+						
+						<div class="control-group">
+							<label class="control-label" for="paid_by"><?php echo $this->lang->line("paid_by"); ?></label>
+							<div class="controls">
+								<select name="paid_by" id="paid_by">
+									<option value="cash"><?php echo $this->lang->line("cash"); ?></option>
+									<option value="CC"><?php echo $this->lang->line("cc"); ?></option>
+									<option value="Cheque"><?php echo $this->lang->line("cheque"); ?></option>
+								</select>
+							</div>
+						</div> 
+						
+						
                             <div class="pcc" style="display:none;"><div class="control-group"><label class="control-label" for="paid-amount"><?php echo $this->lang->line("cc_no"); ?></label><div class="controls"><input type="text" id="pcc" /></div></div>
                                 <div class="control-group"><label class="control-label" for="paid-amount"><?php echo $this->lang->line("cc_holder"); ?></label><div class="controls"><input type="text" id="pcc_holder" /></div></div>
                             </div>
@@ -749,6 +790,8 @@ echo "</div><button id=\"previous\" type=\"button\" class=\"blue\" style='z-inde
 		
         <script type="text/javascript">
             $(document).ready(function() {
+				
+				
 			var hayTurno=true;
 											<?php
 											if($cantidad == 0){
@@ -776,16 +819,27 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 							  }
 							}); 
 						*/	
-					$('#allwrapper').keydown(function(e){
-					//alert(e.keyCode);
+						
+						// 112 = F1 pago
+					// 113 = F2  consulta
+					$('body').keypress(function(e){						
+						//pago
+						if(e.keyCode==112){
+							enviar_pago();
+						}
+						//consulta
+						if(e.keyCode==113){
+							$('.respConsultaArticulo').text('');
+							$('.nombreArticulo').val('');
+							$('#consultaModal').modal();
+						}
+					});
 					
-					// 112 = F1 para chequear precios
-					// 113 = F2 
-					if(e.keyCode==112){
-						$('.respConsultaArticulo').text('');
-						$('.nombreArticulo').val('');
-						$('#consultaModal').modal();
-					}
+					$('#wrapper').keydown(function(e){
+					
+					
+					
+					
 						
 					
 					  if (e.keyCode == teclaCtrl)
@@ -1370,8 +1424,8 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
                                              }
                                          });
                                          var pt = prod_tax ? prod_tax : DT;										
-                                         var newTr = $('<tr id="row_' + count + last + '"></tr>');
-                                         newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + last + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + prod_code + '" id="product-' + count + last + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + last + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + last + '"><input type="hidden" name="discount' + count + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + count + last + '"><a href="#" id="model-' + count + last + '" class="code">' + prod_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + last + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="1" autocomplete="off" id="quantity-' + count + last + '"></td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + count + last + '"></td>');
+                                         var newTr = $('<tr id="row_' + count + last + '"></tr>');										 
+                                         newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + last + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + prod_code + '" id="product-' + count + last + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + last + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + last + '"><input type="hidden" name="discount' + count + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + count + last + '"><a href="#" id="model-' + count + last + '" class="code">' + prod_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + last + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="1" autocomplete="off" id="quantity-' + count + last + '"></td><td style="padding-right: 10px; text-align:right;">$ ' + parseFloat(item_price).toFixed(2) + '</td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + count + last + '"></td>');
 										count_productos++;
                                          newTr.appendTo("#saletbl");
 
@@ -1743,7 +1797,7 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
                                              });
                                              var pt = prod_tax ? prod_tax : DT;//alert(1285);
                                              var newTr = $('<tr id="row_' + count + slast + '"></tr>');
-                                             newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + slast + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + sproduct_code + '" id="product-' + count + slast + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + slast + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + slast + '"><input type="hidden" name="discount' + count + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + count + slast + '"><a href="#" id="model-' + count + slast + '" class="code">' + sproduct_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + slast + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="'+ sproduct_quantity +'" autocomplete="off" id="quantity-' + count + slast + '"></td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price_total).toFixed(2) + '" id="price-' + count + slast + '"></td>');
+                                             newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + slast + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + sproduct_code + '" id="product-' + count + slast + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + slast + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + slast + '"><input type="hidden" name="discount' + count + '" value="<?php echo DEFAULT_DISCOUNT; ?>" id="discount-' + count + slast + '"><a href="#" id="model-' + count + slast + '" class="code">' + sproduct_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + slast + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="'+ sproduct_quantity +'" autocomplete="off" id="quantity-' + count + slast + '"></td><td style="padding-right: 10px; text-align:right;">' + parseFloat(item_price_total).toFixed(2) + '</td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price_total).toFixed(2) + '" id="price-' + count + slast + '"></td>');
                                              newTr.appendTo("#saletbl");
                                              total += parseFloat(item_price_total);
                                              current = parseFloat(total).toFixed(2);
@@ -1890,7 +1944,8 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
                                      count = count + 1;
                                      
                                      $('#paymentModal').modal();
-                                     
+									 //focalizamos luego de unos segundos
+                                     setTimeout(function() { $('#paid-amount').focus() }, 1500);
                                      $("#paid_by").change(function() {
                                          var p_val = $(this).val();
                                          $('#rpaidby').val(p_val);
@@ -2391,7 +2446,7 @@ $('#egresos_monto').mask("000000000.00", {reverse: true});
 											$("#egresos_monto").val('');
 											//ocultamos la ventana modal
 											$("#egresosModal").modal('hide');	
-											window.location.assign('<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/sistema/index.php?module=pos';?>');											
+											window.location.assign('<?php echo 'http://'.$_SERVER['SERVER_NAME'].'/sistema_desa/index.php?module=pos';?>');											
                                         },
                                         error: function() {
                                              
